@@ -13,7 +13,6 @@ $(document).ready(function() {
     let currentColor = p1Color;
 
 
-    console.log('b',board)
     function winner(row,col) {
         console.log(currentPlayerName,' won on -> ',row,col)
     }
@@ -30,7 +29,6 @@ $(document).ready(function() {
 
     function checkBottom(col) {
         let colorR  = getColor(5,col);
-        console.log('col',col)
         for (let row = 5; row  >= 0; row--) {
             let colorR = getColor(row,col);
             // console.log('colorR ',colorR)
@@ -41,8 +39,6 @@ $(document).ready(function() {
     }
 
     function colorCheck(one,two,three,four){
-        console.log('colorcheck ',one,two,one===greyColor,greyColor,one !== undefined)
-        console.log('47',one === two && one === three  && one === four && one !== greyColor && one !== undefined)
         return one === two && one === three  && one === four && one !== greyColor && one !== undefined
     }
 
@@ -58,7 +54,6 @@ $(document).ready(function() {
                     getColor(row,col+2),
                     getColor(row,col+3),
                 )){
-                    console.log('horizontal win')
                     winner(row,col)
                     return true
                 }else{
@@ -78,7 +73,6 @@ $(document).ready(function() {
                     getColor(row+2,col),
                     getColor(row+3,col),
                 )){
-                    console.log('vertical win')
                     winner(row,col)
                     return true
                 }else{
@@ -98,7 +92,6 @@ $(document).ready(function() {
                     getColor(row+3,col)
                 )){
                     winner(row,col)
-                    console.log('diagonal 1 win')
                     return true
                 }else if(colorCheck(     
                     getColor(row,col),          
@@ -106,7 +99,6 @@ $(document).ready(function() {
                     getColor(row-2,col+2),
                     getColor(row-3,col+3)
                 )){
-                    console.log('diagonal 2 win')            
 
                     winner(row,col)
                     return true
@@ -122,7 +114,6 @@ $(document).ready(function() {
     $('h3').text(currentPlayerName + "Your turn");
     $(".board button").on('click',function () {
         
-        console.log('click')
         let col = $(this).closest('td').index();
         let bottomAvailable = checkBottom(col);
         changeBackground(bottomAvailable,col,currentColor);
