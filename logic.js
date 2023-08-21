@@ -2,19 +2,28 @@ $(document).ready(function() {
     var p1Color = "rgb(9, 123, 191)";
     var p2Color = "rgb(237, 28, 9)";
 
-    var playing = true;
     var board = $('.board tr')
     var greyColor = 'rgb(128, 128, 128)';
 
 
     let currentPlayer = 1; 
     let currentPlayerName = "Player 1"
-    // let playerTwoName = "Player 2"
     let currentColor = p1Color;
 
 
+    function clearBoard() {
+        board.each(function()  {
+            for (let i = 0; i < 6; i++) {
+                for (let j = 0; j < 7; j++) {
+                    $(this).eq(i).find('td').eq(j).find('button').css('background-color',greyColor);   
+                }   
+            }
+        });
+    }
+
     function winner(row,col) {
         console.log(currentPlayerName,' won on -> ',row,col)
+        clearBoard();
     }
 
     function changeBackground(row,col,color) {
